@@ -1,0 +1,42 @@
+.header {
+  background-color: #a685fa;
+  width: 100%;
+  padding: 20px;
+}
+
+.form {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchbar {
+  display: flex;
+  width: 250px;
+  height: 30px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  padding-left: 10px;
+}
+
+.searchbar:focus {
+  box-shadow: 0 0 3px rgba(0, 0, 0, 1);
+}
+
+.searchbtn {
+  border-radius: 8px;
+  width: 100px;
+  height: 30px;
+  border: 1px solid #fff;
+  outline: none;
+  background-color: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+
+.searchbtn:hover {
+  background-color: #fff;
+  color: #000;
+}
