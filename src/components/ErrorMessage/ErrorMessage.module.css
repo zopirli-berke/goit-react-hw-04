@@ -1,0 +1,10 @@
+.errorContainer {
+  padding: 16px;
+  margin: 16px;
+  border-radius: 8px;
+  background-color: #ffdddd; /* Açık kırmızı arka plan */
+  border: 1px solid #ff8888; /* Kırmızı kenarlık */
+  color: #d8000c; /* Koyu kırmızı yazı rengi */
+  text-align: center;
+  font-weight: 500;
+}
