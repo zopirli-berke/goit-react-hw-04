@@ -4,13 +4,18 @@ import { toast, Toaster } from "react-hot-toast";
 import ImageGallery from "./components/ImageGallery/ImageGallery";
 import { useState } from "react";
 import { fetchImages } from "./api/images.js";
+import Loader from "./components/Loader/Loader.jsx";
 
 function App() {
   const [images, setImages] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSearch = async (query) => {
     try {
+      setIsLoading(true);
+
       const fetchedImages = await fetchImages(query);
+
       if (fetchedImages.length === 0) {
         toast.error("No images found for your search.");
       } else {
@@ -18,6 +23,8 @@ function App() {
       }
     } catch (error) {
       toast.error("An error occurred while fetching images.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -31,6 +38,7 @@ function App() {
       <SearchBar onSubmit={handleSearch} />
       <Toaster position="top-right" />
       <ImageGallery images={images} onImageClick={handleImageClick} />
+      {isLoading && <Loader />}
     </>
   );
 }
