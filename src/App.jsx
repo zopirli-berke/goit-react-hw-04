@@ -7,6 +7,7 @@ import { fetchImages } from "./api/images.js";
 import Loader from "./components/Loader/Loader.jsx";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage.jsx";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn.jsx";
+import ImageModal from "./components/ImageModal/ImageModal.jsx";
 
 function App() {
   const [images, setImages] = useState([]);
@@ -14,6 +15,8 @@ function App() {
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const handleSearch = (newQuery) => {
     setQuery(newQuery);
@@ -57,9 +60,13 @@ function App() {
     }
   }, [images]);
 
-  const handleImageClick = (image) => {
-    console.log("Image clicked:", image);
-    //Modal buraya eklenecek
+  const openModal = (image) => {
+    setSelectedImage(image);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -68,7 +75,12 @@ function App() {
       <Toaster position="top-right" />
       {error && <ErrorMessage message={error} />}
 
-      <ImageGallery images={images} onImageClick={handleImageClick} />
+      <ImageGallery images={images} onImageClick={openModal} />
+      <ImageModal
+        isOpen={isModalOpen}
+        onRequestClose={closeModal}
+        image={selectedImage}
+      />
 
       {isLoading && <Loader />}
       {images.length > 0 && !isLoading && (
