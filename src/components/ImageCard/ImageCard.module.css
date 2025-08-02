@@ -1,0 +1,12 @@
+.Image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 250ms ease-in-out;
+  cursor: pointer;
+}
+
+.Image:hover {
+  transform: scale(1.03);
+}
